@@ -1,66 +1,103 @@
-
 const stats = [
-  { value: '6+', label: 'Years experience' },
-  { value: '18', label: 'Projects launched' },
-  { value: '96%', label: 'Client satisfaction' },
+  { value: '5+', label: 'Years experience' },
+  { value: '8+', label: 'Projects delivered' },
+  { value: '4', label: 'Languages spoken' },
 ]
 
 const skills = [
   'React',
-  'TypeScript',
-  'UI Design',
+  'Next.js',
+  'Vue 2',
+  'React Native',
+  'JavaScript',
+  'jQuery',
+  '.NET Core',
+  'Python',
+  'MySQL / MSSQL',
+  'Firebase',
+  'PostgreSQL',
   'Figma',
-  'Node.js',
-  'Brand Strategy',
-  'SEO',
-  'Analytics',
 ]
 
 const projects = [
   {
-    title: 'Northstar Studio',
-    type: 'Brand + Web Experience',
-    description:
-      'Redesigned a boutique creative studio’s digital presence to increase inquiries and showcase premium service offerings.',
-    tags: ['Strategy', 'Design', 'Development'],
-  },
-  {
-    title: 'Bloom & Co.',
+    title: 'Setia Didik',
     type: 'E-commerce Experience',
     description:
-      'Built a conversion-focused storefront for a wellness brand with streamlined product storytelling and mobile-first UX.',
-    tags: ['React', 'UX', 'Optimization'],
+      'Delivered client-side features for an online bookstore, building responsive layouts and debugging across devices to keep the shopping experience reliable.',
+    tags: ['JavaScript', 'jQuery', 'Responsive'],
+    link: 'https://setiadidik.com/',
   },
   {
-    title: 'Aster dashboard',
-    type: 'Product Interface',
+    title: 'Toyota Dream Car Art Contest',
+    type: 'Campaign Landing Page',
     description:
-      'Designed a reporting dashboard that simplified complex data for teams and improved day-to-day operational clarity.',
-    tags: ['Product Design', 'Research', 'UI'],
+      'Built a static one-page contest site for Toyota Malaysia using HTML, CSS, and Bootstrap, with interactive sections for contest details and requirements.',
+    tags: ['HTML/CSS', 'Bootstrap', 'JavaScript'],
+    link: 'https://toyota.com.my/dreamcarartcontest',
+  },
+  {
+    title: 'Aequo360',
+    type: 'Healthcare Platform',
+    description:
+      'Maintained a medical booking platform, keeping multilingual content up to date and shipping client-side features that kept records and reservations running smoothly.',
+    tags: ['JavaScript', 'jQuery', 'Localization'],
+    link: 'https://www.aequo360.com/en',
+  },
+  {
+    title: 'MetalHead NFT',
+    type: 'Web3 Experience',
+    description:
+      'Built responsive UI components for an NFT collection site, helping users explore lore and mint pieces from the collection.',
+    tags: ['Next.js', 'UI Components'],
+    link: 'https://metalheadsnft.com/',
+  },
+  {
+    title: 'Interact',
+    type: 'CMS Platform',
+    description:
+      'Built UI across web and mobile for a CMS system tracking company revenue and sales, using Next.js and React Native.',
+    tags: ['Next.js', 'React Native', 'CMS'],
+    link: 'https://interact.com.my/',
+  },
+  {
+    title: 'Study Timer',
+    type: 'Personal Project',
+    description:
+      'Designed and built a desktop-friendly study timer with a motivational message API, helping students stay focused through work and break sessions.',
+    tags: ['React', 'API Integration'],
+    link: 'https://study-timer-eight.vercel.app/',
   },
 ]
 
 const experience = [
   {
-    role: 'Senior Product Designer',
-    company: 'Luma Labs',
-    period: '2022 — Present',
+    role: 'Assistant Manager (Senior Software Engineer)',
+    company: 'Aeon Credit Sdn Bhd',
+    period: 'Oct 2024 — Present',
     summary:
-      'Leading end-to-end product design for SaaS workflows, building stronger product narratives and improving user retention.',
+      'Restructuring frontend applications with React.js while designing and optimizing .NET Core APIs, MSSQL/MySQL databases, and GitLab CI/CD pipelines with AWS Lambda for smoother, faster deployments.',
   },
   {
-    role: 'UI/UX Designer',
-    company: 'Freelance',
-    period: '2019 — 2022',
+    role: 'Frontend Developer',
+    company: 'Snsoft Sdn Bhd',
+    period: 'Jun 2022 — Oct 2024',
     summary:
-      'Partnered with startups and service brands to craft conversion-driven websites, landing pages, and digital experiences.',
+      'Built responsive landing pages and platform features with JavaScript and jQuery, led periodic code reviews, and specialized in mini-program development for enterprise clients.',
   },
   {
-    role: 'Visual Designer',
-    company: 'Studio North',
-    period: '2017 — 2019',
+    role: 'Frontend Developer (Part-Timer)',
+    company: 'Revnology PLT',
+    period: 'Aug 2022 — Oct 2022',
     summary:
-      'Shaped brand systems, marketing assets, and web experiences for clients across creative and lifestyle sectors.',
+      'Delivered quick fixes and built standalone landing pages while maintaining and monitoring existing sites for issues.',
+  },
+  {
+    role: 'Intern / Part-Timer',
+    company: 'Revnology PLT',
+    period: 'Jun 2021 — Jan 2022',
+    summary:
+      'Built responsive interfaces, managed multilingual project data, and debugged issues while learning new programming languages on the job.',
   },
 ]
 
@@ -87,21 +124,26 @@ function App() {
       <main id="home">
         <section className="hero section">
           <div className="hero-copy">
-            <p className="eyebrow">Product designer + creative developer</p>
+            <p className="eyebrow">Frontend Developer</p>
             <h1>
-              I design thoughtful digital experiences that feel as good as they
-              perform.
+              I build responsive, reliable interfaces across React, Next.js, and
+              .NET.
             </h1>
             <p className="lead">
-              I’m Sabrina, a multidisciplinary designer helping brands turn ideas
-              into memorable products, polished websites, and clear storytelling.
+              I’m Sabrina, a frontend developer who enjoys turning ideas into
+              polished, tested web experiences — from e-commerce and healthcare
+              platforms to NFT and CMS projects. Currently exploring full-stack
+              development to round out the picture.
             </p>
 
             <div className="hero-actions">
               <a className="button button-primary" href="#work">
                 View projects
               </a>
-              <a className="button button-secondary" href="mailto:sabrina@example.com">
+              <a
+                className="button button-secondary"
+                href="mailto:sabrinayen1301@gmail.com"
+              >
                 Email me
               </a>
             </div>
@@ -118,16 +160,18 @@ function App() {
 
           <div className="hero-card" aria-label="Profile summary">
             <div className="avatar-ring">
-              <div className="avatar">SC</div>
+              <div className="avatar">SY</div>
             </div>
             <div className="mini-card">
               <span className="mini-label">Currently</span>
-              <strong>Available for freelance work</strong>
+              <strong>
+                Assistant Manager (Senior Software Engineer) at Aeon Credit
+              </strong>
             </div>
             <ul className="check-list">
-              <li>Brand-led product design</li>
-              <li>Conversion-focused UX</li>
-              <li>Responsive interfaces</li>
+              <li>Frontend architecture with React &amp; Next.js</li>
+              <li>REST API integration with .NET Core</li>
+              <li>Responsive, cross-platform interfaces</li>
             </ul>
           </div>
         </section>
@@ -135,21 +179,29 @@ function App() {
         <section id="about" className="section about">
           <div className="section-heading">
             <p className="eyebrow">About</p>
-            <h2>Creative direction rooted in clarity.</h2>
+            <h2>Practical, detail-driven frontend development.</h2>
           </div>
 
           <div className="about-grid">
             <p>
-              I blend strategy, storytelling, and digital craft to design experiences
-              that are intuitive, expressive, and built to convert. My process starts
-              with listening, then turning complex ideas into simple, elegant design
-              systems.
+              I’m an enthusiastic learner and programmer passionate about
+              growing practical skills — actively involved in projects
+              spanning NFT platforms, medical booking systems, e-commerce, and
+              fitness web development.
             </p>
             <p>
-              From concept to execution, I help founders and teams shape how their
-              work is seen, understood, and remembered across web, product, and brand
-              touchpoints.
+              Specialized in front-end development and thorough testing, I’m
+              eager to collaborate, strengthen my problem-solving skills, and
+              contribute to future development. I’m currently exploring
+              full-stack development to build a more complete understanding
+              of the industry.
             </p>
+          </div>
+
+          <div className="tag-list skill-list" aria-label="Skills">
+            {skills.map((skill) => (
+              <span key={skill}>{skill}</span>
+            ))}
           </div>
         </section>
 
@@ -178,6 +230,16 @@ function App() {
                     <span key={tag}>{tag}</span>
                   ))}
                 </div>
+                {project.link && (
+                  <a
+                    className="text-link"
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    View project
+                  </a>
+                )}
               </article>
             ))}
           </div>
@@ -186,7 +248,7 @@ function App() {
         <section id="experience" className="section">
           <div className="section-heading">
             <p className="eyebrow">Experience</p>
-            <h2>Designing with intention.</h2>
+            <h2>Building with intention.</h2>
           </div>
 
           <div className="timeline">
@@ -209,28 +271,30 @@ function App() {
         <section id="contact" className="section contact">
           <div className="contact-card">
             <div>
-              <p className="eyebrow">Let’s build something meaningful</p>
-              <h2>Need a polished digital presence that feels premium?</h2>
+              <p className="eyebrow">Let’s build something reliable</p>
+              <h2>Looking for a frontend developer who sweats the details?</h2>
             </div>
-            <a className="button button-primary" href="mailto:sabrina@example.com">
-              sabrina@example.com
+            <a
+              className="button button-primary"
+              href="mailto:sabrinayen1301@gmail.com"
+            >
+              sabrinayen1301@gmail.com
             </a>
           </div>
         </section>
       </main>
 
       <footer className="footer">
-        <p>© 2026 Sabrina Carter</p>
+        <p>© 2026 Sabrina Yen</p>
         <div className="footer-links">
-          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
+          <a
+            href="https://www.linkedin.com/in/sabrina-yen-sook-ping-8843a9206"
+            target="_blank"
+            rel="noreferrer"
+          >
             LinkedIn
           </a>
-          <a href="https://www.behance.net" target="_blank" rel="noreferrer">
-            Behance
-          </a>
-          <a href="https://www.github.com" target="_blank" rel="noreferrer">
-            GitHub
-          </a>
+          <a href="mailto:sabrinayen1301@gmail.com">Email</a>
         </div>
       </footer>
     </div>
