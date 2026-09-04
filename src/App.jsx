@@ -1,302 +1,230 @@
-const stats = [
-  { value: '5+', label: 'Years experience' },
-  { value: '8+', label: 'Projects delivered' },
-  { value: '4', label: 'Languages spoken' },
-]
+import React, { useEffect, useState } from 'react';
+import { personalData, stats, skills, experience, projects } from './assets/data/personal-data.js';
+import {
+  IconEmail,
+  IconEmailAlt,
+  IconUser,
+  IconGithub,
+  IconLinkedin,
+  IconCodeBrackets,
+  IconDatabase,
+  IconCloud,
+  IconCheckCircle,
+  IconGitBranch,
+  IconBriefcase,
+  IconExternalLink
+} from './assets/imgs/icons/icons.jsx';
+const App = () => {
+  // experience tab navigation
+  const [year ,setYear] = useState(new Date());
+  const [showAll, setShowAll] = useState(false);
+  const [activeExp, setActiveExp] = useState(0);
+  const [selectedExp, setSelectedExp] = useState(experience[0]);
+  const [projectData, setProjectData] = useState(projects.filter(i => i.isSensitive === false));
+  const iconMap = {
+    github: <IconGithub />,
+    database:< IconDatabase/>,
+    cloud:< IconCloud />,
+    code: `_>`,
+    checked: <IconCheckCircle/>
+  };
+  const goNext = (isNext) => {
+    
+    if (isNext) {
+      setActiveExp((i) => (i === experience.length - 1 ? 0 : i + 1))
+      setSelectedExp(experience[activeExp])
+    } else {
+      setActiveExp((i) => (i === 0 ? experience.length - 1 : i - 1))
+      setSelectedExp(experience[activeExp])
+    }
+  };
+  useEffect(() => {
+    const queryParam = new URLSearchParams(location.search);
+    if (queryParam.get("showAll") === true) {
+      setShowAll(true);
+      setProjectData(projects);
+    }
 
-const skills = [
-  'React',
-  'Next.js',
-  'Vue 2',
-  'React Native',
-  'JavaScript',
-  'jQuery',
-  '.NET Core',
-  'Python',
-  'MySQL / MSSQL',
-  'Firebase',
-  'PostgreSQL',
-  'Figma',
-]
+  }, [])
 
-const projects = [
-  {
-    title: 'Setia Didik',
-    type: 'E-commerce Experience',
-    description:
-      'Delivered client-side features for an online bookstore, building responsive layouts and debugging across devices to keep the shopping experience reliable.',
-    tags: ['JavaScript', 'jQuery', 'Responsive'],
-    link: 'https://setiadidik.com/',
-  },
-  {
-    title: 'Toyota Dream Car Art Contest',
-    type: 'Campaign Landing Page',
-    description:
-      'Built a static one-page contest site for Toyota Malaysia using HTML, CSS, and Bootstrap, with interactive sections for contest details and requirements.',
-    tags: ['HTML/CSS', 'Bootstrap', 'JavaScript'],
-    link: 'https://toyota.com.my/dreamcarartcontest',
-  },
-  {
-    title: 'Aequo360',
-    type: 'Healthcare Platform',
-    description:
-      'Maintained a medical booking platform, keeping multilingual content up to date and shipping client-side features that kept records and reservations running smoothly.',
-    tags: ['JavaScript', 'jQuery', 'Localization'],
-    link: 'https://www.aequo360.com/en',
-  },
-  {
-    title: 'MetalHead NFT',
-    type: 'Web3 Experience',
-    description:
-      'Built responsive UI components for an NFT collection site, helping users explore lore and mint pieces from the collection.',
-    tags: ['Next.js', 'UI Components'],
-    link: 'https://metalheadsnft.com/',
-  },
-  {
-    title: 'Interact',
-    type: 'CMS Platform',
-    description:
-      'Built UI across web and mobile for a CMS system tracking company revenue and sales, using Next.js and React Native.',
-    tags: ['Next.js', 'React Native', 'CMS'],
-    link: 'https://interact.com.my/',
-  },
-  {
-    title: 'Study Timer',
-    type: 'Personal Project',
-    description:
-      'Designed and built a desktop-friendly study timer with a motivational message API, helping students stay focused through work and break sessions.',
-    tags: ['React', 'API Integration'],
-    link: 'https://study-timer-eight.vercel.app/',
-  },
-]
 
-const experience = [
-  {
-    role: 'Assistant Manager (Senior Software Engineer)',
-    company: 'Aeon Credit Sdn Bhd',
-    period: 'Oct 2024 — Present',
-    summary:
-      'Restructuring frontend applications with React.js while designing and optimizing .NET Core APIs, MSSQL/MySQL databases, and GitLab CI/CD pipelines with AWS Lambda for smoother, faster deployments.',
-  },
-  {
-    role: 'Frontend Developer',
-    company: 'Snsoft Sdn Bhd',
-    period: 'Jun 2022 — Oct 2024',
-    summary:
-      'Built responsive landing pages and platform features with JavaScript and jQuery, led periodic code reviews, and specialized in mini-program development for enterprise clients.',
-  },
-  {
-    role: 'Frontend Developer (Part-Timer)',
-    company: 'Revnology PLT',
-    period: 'Aug 2022 — Oct 2022',
-    summary:
-      'Delivered quick fixes and built standalone landing pages while maintaining and monitoring existing sites for issues.',
-  },
-  {
-    role: 'Intern / Part-Timer',
-    company: 'Revnology PLT',
-    period: 'Jun 2021 — Jan 2022',
-    summary:
-      'Built responsive interfaces, managed multilingual project data, and debugged issues while learning new programming languages on the job.',
-  },
-]
-
-function App() {
   return (
     <div className="page-shell">
-      <header className="topbar">
-        <a href="#home" className="brand" aria-label="Sabrina home">
-          Sabrina<span>.</span>
-        </a>
-
-        <nav className="nav" aria-label="Main navigation">
-          <a href="#about">About</a>
-          <a href="#work">Work</a>
-          <a href="#experience">Experience</a>
-          <a href="#contact">Contact</a>
-        </nav>
-
-        <a className="button button-primary" href="#contact">
-          Let’s talk
-        </a>
+      <header className="header-container">
+        <div className="left-content">
+          <span className="tiny-box"></span>
+          <span className="nav-brand">{personalData.name}</span>
+        </div>
+        <div className="right-content">
+          <span className="nav">
+            <a href="#about">about</a>
+            <a href="#skills">skills</a>
+            <a href="#projects">projects</a>
+            <a href="#experience">experience</a>
+            <button className="button button-primary">Get in Touch</button>
+          </span>
+        </div>
       </header>
-
-      <main id="home">
-        <section className="hero section">
-          <div className="hero-copy">
-            <p className="eyebrow">Frontend Developer</p>
-            <h1>
-              I build responsive, reliable interfaces across React, Next.js, and
-              .NET.
-            </h1>
-            <p className="lead">
-              I’m Sabrina, a frontend developer who enjoys turning ideas into
-              polished, tested web experiences — from e-commerce and healthcare
-              platforms to NFT and CMS projects. Currently exploring full-stack
-              development to round out the picture.
-            </p>
-
-            <div className="hero-actions">
-              <a className="button button-primary" href="#work">
-                View projects
-              </a>
-              <a
-                className="button button-secondary"
-                href="mailto:sabrinayen1301@gmail.com"
-              >
-                Email me
-              </a>
+      <section>
+        <div className="section-container">
+          <div><h1>{personalData.name}</h1><p>{personalData.curTitle}</p></div>
+          <p className="title-position">Four Years of Experience</p>
+          <p className="description">Nine years building the parts of a product nobody sees: payment pipelines that reconcile to the cent, build systems that finish before you switch tabs, and APIs other engineers actually enjoy calling.</p>
+          <div className="contact-content">
+            <div className="button button-primary email">
+              <a href={`mailto:${personalData.email}`}><IconEmail alt="email-icon" />{" "}
+                {personalData.email}</a>
             </div>
-
-            <div className="stats" aria-label="Key statistics">
-              {stats.map((stat) => (
-                <div key={stat.label} className="stat-item">
-                  <strong>{stat.value}</strong>
-                  <span>{stat.label}</span>
+            <div className="phone">
+              <a href="tel:+1234567890">Résumé (PDF)</a>
+            </div>
+          </div>
+        </div>
+        <div className="code-box">
+          <p className="header-code">~/whoami</p>
+          <pre className="code-content">
+            <span className="prompt-char">$</span> sabrina --stack <br />
+            <span className="prompt-arrow">→</span> react . vuejs2 . dotnet . python . javascript . jquery<br />
+            <span className="prompt-char">$</span> sabrina --uptime<br />
+            <span className="prompt-arrow">→</span> · 4years .<br />
+            <span className="prompt-char">$</span> sabrina --location<br />
+            <span className="prompt-arrow">→</span> Malaysia<br />
+            <span className="prompt-char">$</span> sabrina --status<br />
+            <span className="prompt-arrow">→</span> open to work<br />
+          </pre>
+        </div>
+      </section>
+      <hr className="divider" />
+      <section id="about">
+        <div className="section-container">
+          <div><span className="breadcrumbs">
+            <IconUser className="icon-blue" alt="user-icon" />01 / about</span>
+            <h2>I make code fun and easy.</h2>
+          </div>
+        </div>
+        <div className="description">
+          <p>Hi, I'm Sabrina Yen, a software engineer with a passion for building elegant and efficient solutions. With four years of experience in the industry, I specialize in creating seamless user experiences and robust backend systems.</p>
+        </div>
+      </section>
+      <hr className="divider" />
+      <section id="skills">
+        <div className="section-container">
+          <div className="d-flex">
+            <span className="breadcrumbs">
+              <IconCodeBrackets className="icon-blue" alt="code-icon" />02 / techstack & skills
+            </span>
+            <div className="skills-listing">
+              {skills.map((skillCategory, index) => (
+                <div className="box" key={index}>
+                  <h3 className='box-title'>{iconMap[skillCategory.skillsIcon]} {skillCategory.category}</h3>
+                  <div className='box-content'>
+                    <div className="skills-grid">
+                      {skillCategory.items.map((skill, idx) => (
+                        <div className="skill-item" key={idx}>
+                          {skill}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
-
-          <div className="hero-card" aria-label="Profile summary">
-            <div className="avatar-ring">
-              <div className="avatar">SY</div>
-            </div>
-            <div className="mini-card">
-              <span className="mini-label">Currently</span>
-              <strong>
-                Assistant Manager (Senior Software Engineer) at Aeon Credit
-              </strong>
-            </div>
-            <ul className="check-list">
-              <li>Frontend architecture with React &amp; Next.js</li>
-              <li>REST API integration with .NET Core</li>
-              <li>Responsive, cross-platform interfaces</li>
-            </ul>
-          </div>
-        </section>
-
-        <section id="about" className="section about">
-          <div className="section-heading">
-            <p className="eyebrow">About</p>
-            <h2>Practical, detail-driven frontend development.</h2>
-          </div>
-
-          <div className="about-grid">
-            <p>
-              I’m an enthusiastic learner and programmer passionate about
-              growing practical skills — actively involved in projects
-              spanning NFT platforms, medical booking systems, e-commerce, and
-              fitness web development.
-            </p>
-            <p>
-              Specialized in front-end development and thorough testing, I’m
-              eager to collaborate, strengthen my problem-solving skills, and
-              contribute to future development. I’m currently exploring
-              full-stack development to build a more complete understanding
-              of the industry.
-            </p>
-          </div>
-
-          <div className="tag-list skill-list" aria-label="Skills">
-            {skills.map((skill) => (
-              <span key={skill}>{skill}</span>
-            ))}
-          </div>
-        </section>
-
-        <section id="work" className="section">
-          <div className="section-heading row">
-            <div>
-              <p className="eyebrow">Selected work</p>
-              <h2>Recent projects.</h2>
-            </div>
-            <a href="#contact" className="text-link">
-              Start a project
-            </a>
-          </div>
-
-          <div className="project-grid">
-            {projects.map((project) => (
-              <article key={project.title} className="project-card">
-                <div className="project-topline">
-                  <span className="project-type">{project.type}</span>
-                  <span className="project-dot" aria-hidden="true"></span>
-                </div>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                <div className="tag-list">
-                  {project.tags.map((tag) => (
-                    <span key={tag}>{tag}</span>
-                  ))}
-                </div>
-                {project.link && (
-                  <a
-                    className="text-link"
-                    href={project.link}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    View project
-                  </a>
-                )}
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="experience" className="section">
-          <div className="section-heading">
-            <p className="eyebrow">Experience</p>
-            <h2>Building with intention.</h2>
-          </div>
-
-          <div className="timeline">
-            {experience.map((item) => (
-              <div key={item.role} className="timeline-item">
-                <div className="timeline-marker" aria-hidden="true"></div>
-                <div className="timeline-content">
-                  <div className="timeline-header">
-                    <h3>{item.role}</h3>
-                    <span>{item.period}</span>
+        </div>
+      </section>
+      <hr className="divider" />
+      <section id="projects">
+        <div className="section-container">
+          <div className="d-flex">
+            <span className="breadcrumbs">
+              <IconGitBranch className="icon-blue" alt="code-icon" />03 / SELECTED PROJECTS
+            </span>
+            <div className="proj-listing">
+              {projectData.map((project, index) => (
+                <div className="proj-item" key={index}>
+                  <div className="label">
+                    <span className="tiny-box"></span> <span className="no">{String(index + 1).padStart(2, '0')}</span><span className="client"><IconGithub alt="github-icon" /> {project.type}</span>
                   </div>
-                  <p className="company-name">{item.company}</p>
-                  <p>{item.summary}</p>
+                  <div className="proj-item">
+                    <h3>{project.title}</h3>
+                    <p className="description">{project.description}</p>
+                    <div className="tag-list">
+                      {project.tags.map((tag, tagIndex) => (
+                        <span className="tag tag-outline" key={tagIndex}>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    {project.avaliable && <a href={project.link} target="_blank" rel="noopener noreferrer" className="redirect-link">
+                      {project.title} <IconExternalLink alt="external-link-icon" />
+                    </a>}
+                  </div>
+                  <span style={{ textAlign: "end", fontSize: "12px" }}>{project.company}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr className="divider" />
+      <section id="experience">
+        <div className="section-container">
+          <div className="d-flex">
+            <span className="breadcrumbs">
+              <IconBriefcase className="icon-blue" alt="briefcase-icon" />04 / EXPERIENCE
+            </span>
+            <div className="milestone-container">
+              <div className="label">
+                <span className="milestone-label">
+                  milestone 04 / 04
+                </span>
+                <span className="milestone-divider"></span>
+                <div className="btn-prev-next">
+                  <button className="btn-next">{"<"}</button>
+                  <button className="btn-prev">{">"}</button>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="contact" className="section contact">
-          <div className="contact-card">
-            <div>
-              <p className="eyebrow">Let’s build something reliable</p>
-              <h2>Looking for a frontend developer who sweats the details?</h2>
             </div>
-            <a
-              className="button button-primary"
-              href="mailto:sabrinayen1301@gmail.com"
-            >
-              sabrinayen1301@gmail.com
-            </a>
-          </div>
-        </section>
-      </main>
+            <div className="experience-listing">
+              {experience.map((exp, index) => (
+                <button className="experience-item" key={index} onClick={() => { setSelectedExp(exp); setShowSelectedExp(true); }} >
+                  <span>
+                    <span className="tiny-box" />{exp.period}</span>
+                  <span className="company">{exp.company}</span>
+                </button >
+              ))}
 
-      <footer className="footer">
-        <p>© 2026 Sabrina Yen</p>
-        <div className="footer-links">
-          <a
-            href="https://www.linkedin.com/in/sabrina-yen-sook-ping-8843a9206"
-            target="_blank"
-            rel="noreferrer"
-          >
-            LinkedIn
-          </a>
-          <a href="mailto:sabrinayen1301@gmail.com">Email</a>
+            </div>
+            <div className="selected-experience">
+              <p>{selectedExp.period}</p>
+              <h3>{selectedExp.role}</h3>
+              <span className="description">{selectedExp.company}</span>
+              <ul>
+                {selectedExp.summary.map((item, idx) => (
+                  <li key={idx}><span className="tiny-box"></span>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
         </div>
-      </footer>
+      </section>
+      <section id="contact">
+        <div className="section-container contact-section">
+          <div className="d-flex">
+            <span className="breadcrumbs">
+              <IconEmailAlt alt="email-alt-icon" />05 / CONTACT
+            </span>
+            <h2>Lets build Something</h2>
+            <p>Open to frontend and full-stack roles, freelance builds, or a conversation about a project you are planning. I reply within a day. </p>
+            <div className="tag-list">
+              <span className="tag tag-outline"><IconEmail alt="email-icon" /><a href={`mailto:${personalData.email}`}/>{personalData.email}</span>
+              <span className="tag tag-outline"><a href={personalData.linkedin} target="_blank" rel="noopener noreferrer"><IconLinkedin alt="linkedin-icon" /></a></span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer><span>© {year.getFullYear()} {personalData.name}</span><span>{personalData.location}</span></footer>
     </div>
   )
 }

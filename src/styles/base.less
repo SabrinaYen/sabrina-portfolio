@@ -1,9 +1,14 @@
 @import './variables.less';
 
+@font-face {
+  font-family: "Archivo";
+  src: url('../assets/font/Archivo-VariableFont_wdth\,wght.ttf') format('truetype');
+}
+
 :root {
   font-family: @primary-font;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: @primary-font-weight;
   color: #f5f1ff;
   background:
     radial-gradient(circle at top, rgba(130, 112, 255, 0.25), transparent 28%),
@@ -12,6 +17,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #0d0f12;
+  background-image: radial-gradient(circle at 1px 1px, #1c2129 1px, transparent 0);
+  background-size: 28px 28px;
 }
 
 * {
@@ -39,6 +47,7 @@ img {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 h1,
@@ -46,4 +55,13 @@ h2,
 h3,
 p {
   margin-top: 0;
+}
+
+section {
+  padding: clamp(52px, 8vw, 104px) 0px clamp(40px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 44px clamp(32px, 6vw, 80px);
+  align-items: start;
+
 }
