@@ -90,7 +90,7 @@ const App = () => {
             </div>
             <div className="phone">
               <a
-                href={lang === 'zh' ? '/resume-zh.pdf' : '/resume-en.pdf'}
+                href={`${import.meta.env.BASE_URL}${lang === 'zh' ? 'resume-zh.pdf' : 'resume-en.pdf'}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
