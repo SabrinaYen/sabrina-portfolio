@@ -2,7 +2,29 @@
 // Fields that are proper nouns / URLs / tech names (company names, tags,
 // links, email, phone) are left as plain strings since they don't change
 // between languages.
-
+export const uiText = {
+  navAbout: { en: 'about', zh: '关于' },
+  navSkills: { en: 'skills', zh: '技能' },
+  navProjects: { en: 'projects', zh: '项目' },
+  navExperience: { en: 'experience', zh: '经历' },
+  getInTouch: { en: 'Get in Touch', zh: '联系我' },
+  resume: { en: 'Résumé (PDF)', zh: '简历 (PDF)' },
+  fourYears: { en: 'Four Years of Experience', zh: '四年工作经验' },
+  aboutBreadcrumb: { en: '01 / about', zh: '01 / 关于' },
+  aboutHeading: { en: 'I make code fun and easy.', zh: '让代码变得简单有趣。' },
+  skillsBreadcrumb: { en: '02 / techstack & skills', zh: '02 / 技术栈与技能' },
+  projectsBreadcrumb: { en: '03 / SELECTED PROJECTS', zh: '03 / 精选项目' },
+  experienceBreadcrumb: { en: '04 / EXPERIENCE', zh: '04 / 工作经历' },
+  contactBreadcrumb: { en: '05 / CONTACT', zh: '05 / 联系方式' },
+  milestone: { en: 'milestone', zh: '里程碑' },
+  contactHeading: { en: 'Lets build Something', zh: '一起创造点什么' },
+  contactBody: {
+    en: 'Open to frontend and full-stack roles, freelance builds, or a conversation about a project you are planning. I reply within a day.',
+    zh: '欢迎前端 / 全栈职位、自由接案，或聊聊你正在规划的项目。我会在一天内回复。',
+  },
+  openToWork: { en: 'open to work', zh: '欢迎合作' },
+  malaysia: { en: 'Malaysia', zh: '马来西亚' },
+};
 export const personalData = {
     name: { en: 'Sabrina Yen', zh: '殷淑冰' },
     fullName: { en: 'Sabrina Yen Sook Ping', zh: '殷淑冰 (Sabrina Yen Sook Ping)' },
