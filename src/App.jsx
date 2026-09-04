@@ -223,12 +223,13 @@ const App = () => {
               {experience.map((exp, index) => (
                 <button
                   key={index}
-                  className={`experience-item${index === activeExp ? ' active' : ''}`}
+                  className={`experience-item ${index === activeExp ? ' active' : ''}`}
                   onClick={() => setActiveExp(index)}
+                  aria-pressed={index === activeExp}
                 >
-                  <span>
-                    <span className="tiny-box" />
-                    {exp.period}
+                  <span className="experience-period">
+                    <span className="tiny-box" aria-hidden="true" />
+                    <span>{exp.period}</span>
                   </span>
                   <span className="company">{exp.company}</span>
                 </button>
