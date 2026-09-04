@@ -3,39 +3,48 @@
 // links, email, phone) are left as plain strings since they don't change
 // between languages.
 export const uiText = {
-  navAbout: { en: 'about', zh: '关于' },
-  navSkills: { en: 'skills', zh: '技能' },
-  navProjects: { en: 'projects', zh: '项目' },
-  navExperience: { en: 'experience', zh: '经历' },
-  getInTouch: { en: 'Get in Touch', zh: '联系我' },
-  resume: { en: 'Résumé (PDF)', zh: '简历 (PDF)' },
-  fourYears: { en: 'Four Years of Experience', zh: '四年工作经验' },
-  aboutBreadcrumb: { en: '01 / about', zh: '01 / 关于' },
-  aboutHeading: { en: 'I make code fun and easy.', zh: '让代码变得简单有趣。' },
-  skillsBreadcrumb: { en: '02 / techstack & skills', zh: '02 / 技术栈与技能' },
-  projectsBreadcrumb: { en: '03 / SELECTED PROJECTS', zh: '03 / 精选项目' },
-  experienceBreadcrumb: { en: '04 / EXPERIENCE', zh: '04 / 工作经历' },
-  contactBreadcrumb: { en: '05 / CONTACT', zh: '05 / 联系方式' },
-  milestone: { en: 'milestone', zh: '里程碑' },
-  contactHeading: { en: 'Lets build Something', zh: '一起创造点什么' },
-  contactBody: {
-    en: 'Open to frontend and full-stack roles, freelance builds, or a conversation about a project you are planning. I reply within a day.',
-    zh: '欢迎前端 / 全栈职位、自由接案，或聊聊你正在规划的项目。我会在一天内回复。',
-  },
-  openToWork: { en: 'open to work', zh: '欢迎合作' },
-  malaysia: { en: 'Malaysia', zh: '马来西亚' },
+    navAbout: { en: 'about', zh: '关于' },
+    navSkills: { en: 'skills', zh: '技能' },
+    navProjects: { en: 'projects', zh: '项目' },
+    navExperience: { en: 'experience', zh: '经历' },
+    getInTouch: { en: 'Get in Touch', zh: '联系我' },
+    resume: { en: 'Résumé (PDF)', zh: '简历 (PDF)' },
+    bio: {
+        en: `frontend developer → full-stack
+react · .net core · design-minded engineering`,
+        zh: `前端开发 → 全栈开发
+React · .NET Core · 注重设计的工程思维`,
+    },
+    aboutBreadcrumb: { en: '01 / about', zh: '01 / 关于' },
+    aboutHeading: { en: 'I make code fun and easy.', zh: '让代码变得简单有趣。' },
+    skillsBreadcrumb: { en: '02 / techstack & skills', zh: '02 / 技术栈与技能' },
+    projectsBreadcrumb: { en: '03 / SELECTED PROJECTS', zh: '03 / 精选项目' },
+    experienceBreadcrumb: { en: '04 / EXPERIENCE', zh: '04 / 工作经历' },
+    contactBreadcrumb: { en: '05 / CONTACT', zh: '05 / 联系方式' },
+    milestone: { en: 'milestone', zh: '里程碑' },
+    contactHeading: { en: 'Lets build Something', zh: '一起创造点什么' },
+    contactBody: {
+        en: 'Open to frontend and full-stack roles, freelance builds, or a conversation about a project you are planning. I reply within a day.',
+        zh: '欢迎前端 / 全栈职位、自由接案，或聊聊你正在规划的项目。我会在一天内回复。',
+    },
+    openToWork: { en: 'open to work', zh: '欢迎合作' },
+    malaysia: { en: 'Malaysia', zh: '马来西亚' },
 };
 export const personalData = {
     name: { en: 'Sabrina Yen', zh: '殷淑冰' },
     fullName: { en: 'Sabrina Yen Sook Ping', zh: '殷淑冰 (Sabrina Yen Sook Ping)' },
     prevTitle: { en: 'Frontend Developer', zh: '前端开发工程师' },
     curTitle: { en: 'FullStack Developer', zh: '全栈开发工程师' },
+    bio: {
+        en: 'Frontend developer with 4 years of experience building responsive web and mobile experiences with React, Vue, JavaScript, and .NET. I enjoy turning complex requirements into clear, reliable interfaces and growing into full-stack engineering.',
+        zh: '拥有 4 年经验的前端开发工程师，使用 React、Vue、JavaScript 与 .NET 构建响应式网页及移动应用。我喜欢将复杂需求转化为清晰可靠的界面，并持续成长为全栈工程师。',
+    },
     email: 'sabrinayen1301@gmail.com',
     phoneNo: '+6012-5288801',
-   
+    
     location: { en: 'Petaling Jaya, Selangor, Malaysia', zh: '雪兰莪，八打灵再也，马来西亚' },
     // wasn't in your data file before — pulled from resume's 个人简介
-   
+
     socialLinks: {
         github: 'https://github.com/SabrinaYen/',
         linkedin: 'https://www.linkedin.com/in/sabrina-yen-sook-ping-8843a9206',

@@ -40,6 +40,13 @@ const App = () => {
     );
   };
 
+  const clearQueryOnNav = (event) => {
+    const { hash } = event.currentTarget;
+    event.preventDefault();
+    window.history.replaceState(null, '', window.location.pathname);
+    document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   useEffect(() => {
     const queryParam = new URLSearchParams(window.location.search);
     if (queryParam.get('showAll') === 'true') {
@@ -57,12 +64,12 @@ const App = () => {
         </div>
         <div className="right-content">
           <span className="nav">
-            <a href="#about">{t(uiText.navAbout, lang)}</a>
-            <a href="#skills">{t(uiText.navSkills, lang)}</a>
-            <a href="#projects">{t(uiText.navProjects, lang)}</a>
-            <a href="#experience">{t(uiText.navExperience, lang)}</a>
+            <a href="#about" onClick={clearQueryOnNav}>{t(uiText.navAbout, lang)}</a>
+            <a href="#skills" onClick={clearQueryOnNav}>{t(uiText.navSkills, lang)}</a>
+            <a href="#projects" onClick={clearQueryOnNav}>{t(uiText.navProjects, lang)}</a>
+            <a href="#experience" onClick={clearQueryOnNav}>{t(uiText.navExperience, lang)}</a>
             <LangToggle lang={lang} setLang={setLang} />
-            <button className="button button-primary">{t(uiText.getInTouch, lang)}</button>
+            <button className="button button-primary"><a href="#contact">{t(uiText.getInTouch, lang)}</a></button>
           </span>
         </div>
       </header>
@@ -73,7 +80,7 @@ const App = () => {
             <h1>{t(personalData.name, lang)}</h1>
             <p>{t(personalData.curTitle, lang)}</p>
           </div>
-          <p className="title-position">{t(uiText.fourYears, lang)}</p>
+          <p className="title-position">{t(uiText.bio, lang)}</p>
           <p className="description">{t(personalData.bio, lang)}</p>
           <div className="contact-content">
             <div className="button button-primary email">
@@ -82,7 +89,13 @@ const App = () => {
               </a>
             </div>
             <div className="phone">
-              <a href="tel:+1234567890">{t(uiText.resume, lang)}</a>
+              <a
+                href={lang === 'zh' ? '/resume-zh.pdf' : '/resume-en.pdf'}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t(uiText.resume, lang)}
+              </a>
             </div>
           </div>
         </div>
@@ -91,13 +104,13 @@ const App = () => {
           <p className="header-code">~/whoami</p>
           <pre className="code-content">
             <span className="prompt-char">$</span> sabrina --stack <br />
-            <span className="prompt-arrow">→</span> react . vuejs2 . dotnet . python . javascript . jquery<br />
+            <span className="prompt-arrow">→</span> react · next.js · vue2 · .net<br />
             <span className="prompt-char">$</span> sabrina --uptime<br />
-            <span className="prompt-arrow">→</span> · 4years .<br />
-            <span className="prompt-char">$</span> sabrina --location<br />
-            <span className="prompt-arrow">→</span> {t(uiText.malaysia, lang)}<br />
+            <span className="prompt-arrow">→</span> 4 yrs · 3 companies · 10+ shipped<br />
+            <span className="prompt-char">$</span> sabrina --languages<br />
+            <span className="prompt-arrow">→</span> en · chinese · cantonese · melay<br />
             <span className="prompt-char">$</span> sabrina --status<br />
-            <span className="prompt-arrow">→</span> {t(uiText.openToWork, lang)}<br />
+            <span className="prompt-arrow">→</span> learning the backend half<br />
           </pre>
         </div>
       </section>
