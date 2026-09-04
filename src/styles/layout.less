@@ -176,6 +176,8 @@ section {
   background: @color-surface;
   will-change: transform;
   box-shadow: rgba(0, 0, 0, 0.75) 0px 24px 60px -20px;
+  transition: box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
 
   .header-code {
     .flex-row();
@@ -206,9 +208,9 @@ section {
   }
 
   &:hover {
-    transition: box-shadow 400ms cubic-bezier(0.33, 1, 0.68, 1),
-      border-color 400ms cubic-bezier(0.33, 1, 0.68, 1),
-      transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(-8px);
+    box-shadow: 0px 24px 56px -20px rgba(0, 0, 0, 0.75),
+      0px 0px 24px rgba(77, 124, 254, 0.45);
   }
 }
 
