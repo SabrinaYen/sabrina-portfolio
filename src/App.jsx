@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { personalData, stats, skills, experience, projects, uiText } from './assets/data/personal-data.js';
+import { personalData, stats, skills, experience, projects, uiText, terminalLines } from './assets/data/personal-data.js';
 import {
   IconEmail,
   IconEmailAlt,
@@ -82,12 +82,15 @@ const App = () => {
     <div className="page-shell">
       <header className="header-container">
         <div className="left-content">
-          <span className="tiny-box"></span>
+          <span className="commit-indicator" aria-hidden="true">
+            <span className="dot pulse" />
+            <span className="line" />
+            <span className="dot" />
+            <span className="line" />
+            <span className="dot" />
+          </span>
           <span className="nav-brand">{t(personalData.name, lang)}</span>
         </div>
-        {/* <div className="right-content">
-         
-        </div> */}
         <span className="nav">
           <div className='nav-item'>
             {menuItem.map((i, key) => {
@@ -133,14 +136,10 @@ const App = () => {
         <div className="code-box">
           <p className="header-code">~/whoami</p>
           <pre className="code-content">
-            <span className="prompt-char">$</span> sabrina --stack <br />
-            <span className="prompt-arrow">→</span> react · next.js · vue2 · .net<br />
-            <span className="prompt-char">$</span> sabrina --uptime<br />
-            <span className="prompt-arrow">→</span> 4 yrs · 3 companies · 10+ shipped<br />
-            <span className="prompt-char">$</span> sabrina --languages<br />
-            <span className="prompt-arrow">→</span> en · chinese · cantonese · melay<br />
-            <span className="prompt-char">$</span> sabrina --status<br />
-            <span className="prompt-arrow">→</span> learning the backend half<br />
+            {terminalLines.map((i,key) => {
+              return (<span key={key}><span className="prompt-char">$</span> {i.command}< br />
+                <span className="prompt-arrow">→</span> {t(i.output,lang)}<br /></span>)
+            })}
           </pre>
         </div>
       </section>
@@ -158,7 +157,7 @@ const App = () => {
           </div>
         </div>
         <div className="description">
-          <p>{t(personalData.bio, lang)}</p>
+          <p>{t(uiText.aboutHeadingDesc, lang)}</p>
         </div>
       </section>
 

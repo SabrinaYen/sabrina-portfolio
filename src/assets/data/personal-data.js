@@ -17,7 +17,10 @@ React · .NET Core · 注重设计的工程思维`,
     },
     aboutBreadcrumb: { en: '01 / about', zh: '01 / 关于' },
     aboutHeading: { en: 'I make code fun and easy.', zh: '让代码变得简单有趣。' },
-    skillsBreadcrumb: { en: '02 / techstack & skills', zh: '02 / 技术栈与技能' },
+    aboutHeadingDesc: {
+        en: 'I play around with the concepts I\'m given — it builds more curiosity and makes coding easier to learn in the long run.',
+        zh: '我喜欢反复摆弄手上的概念——这样更能激发好奇心，也让学习编程在长远来看变得更轻松。',
+    }, skillsBreadcrumb: { en: '02 / techstack & skills', zh: '02 / 技术栈与技能' },
     projectsBreadcrumb: { en: '03 / SELECTED PROJECTS', zh: '03 / 精选项目' },
     experienceBreadcrumb: { en: '04 / EXPERIENCE', zh: '04 / 工作经历' },
     contactBreadcrumb: { en: '05 / CONTACT', zh: '05 / 联系方式' },
@@ -41,15 +44,37 @@ export const personalData = {
     },
     email: 'sabrinayen1301@gmail.com',
     phoneNo: '+6012-5288801',
-    
     location: { en: 'Petaling Jaya, Selangor, Malaysia', zh: '雪兰莪，八打灵再也，马来西亚' },
-    // wasn't in your data file before — pulled from resume's 个人简介
-
     socialLinks: {
         github: 'https://github.com/SabrinaYen/',
         linkedin: 'https://www.linkedin.com/in/sabrina-yen-sook-ping-8843a9206',
     },
 };
+export const terminalLines = [
+    {
+        command: 'sabrina --stack',
+        output: { en: 'react · next.js · vue2 · .net', zh: 'react · next.js · vue2 · .net' },
+    },
+    {
+        command: 'sabrina --uptime',
+        output: { en: '5 yrs · 3 companies · 8+ shipped', zh: '5 年 · 3 家公司 · 8+ 个上线项目' },
+    },
+    {
+        command: 'sabrina --languages',
+        output: { en: 'english · mandarin · cantonese · malay', zh: '英语 · 中文 · 粤语 · 马来语' },
+    },
+    {
+        command: 'sabrina --status',
+        output: { en: 'open to work', zh: '欢迎合作' },
+    },
+    {
+        command: 'sabrina --traits',
+        output: {
+            en: 'curious · adaptable . fast learner',
+            zh: '好奇心强 · 适应力强 · 学习迅速',
+        },
+    },
+];
 
 export const stats = [
     { value: '5+', label: { en: 'Years experience', zh: '年工作经验' } },
