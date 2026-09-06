@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { personalData, stats, skills, experience, projects,uiText } from './assets/data/personal-data.js';
+import { personalData, stats, skills, experience, projects, uiText } from './assets/data/personal-data.js';
 import {
   IconEmail,
   IconEmailAlt,
@@ -30,8 +30,8 @@ const App = () => {
   const [year] = useState(new Date());
   const [showAll, setShowAll] = useState(false);
   const [activeExp, setActiveExp] = useState(0);
+  const [activeNav, setActiveNav] = useState();
   const [projectData, setProjectData] = useState(projects.filter((p) => p.isSensitive === false));
-
   const selectedExp = experience[activeExp];
 
   const goNext = (isNext) => {
@@ -40,13 +40,36 @@ const App = () => {
     );
   };
 
-  const clearQueryOnNav = (event) => {
+  const clearQueryOnNav = (event, key) => {
     const { hash } = event.currentTarget;
     event.preventDefault();
     window.history.replaceState(null, '', window.location.pathname);
     document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' });
+    setActiveNav(key)
   };
 
+  //component menu
+  const menuItem = [uiText.navAbout, uiText.navSkills, uiText.navProjects, uiText.navExperience];
+
+  useEffect(() => {
+    const sections = menuItem
+      .map((item) => document.getElementById(item.en))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveNav(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: '-40% 0px -55% 0px' }
+    );
+
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
   useEffect(() => {
     const queryParam = new URLSearchParams(window.location.search);
     if (queryParam.get('showAll') === 'true') {
@@ -62,16 +85,23 @@ const App = () => {
           <span className="tiny-box"></span>
           <span className="nav-brand">{t(personalData.name, lang)}</span>
         </div>
+        {/* <div className="right-content">
+         
+        </div> */}
+        <span className="nav">
+          <div className='nav-item'>
+            {menuItem.map((i, key) => {
+              return <a className={activeNav == key || activeNav == i.en ? "active" : ""} href={`#${i.en}`} onClick={(e) => clearQueryOnNav(e, key)} key={key}>{t(i, lang)}</a>
+            })}
+          </div>
+
+        </span>
         <div className="right-content">
-          <span className="nav">
-            <a href="#about" onClick={clearQueryOnNav}>{t(uiText.navAbout, lang)}</a>
-            <a href="#skills" onClick={clearQueryOnNav}>{t(uiText.navSkills, lang)}</a>
-            <a href="#projects" onClick={clearQueryOnNav}>{t(uiText.navProjects, lang)}</a>
-            <a href="#experience" onClick={clearQueryOnNav}>{t(uiText.navExperience, lang)}</a>
-            <LangToggle lang={lang} setLang={setLang} />
-            <button className="button button-primary"><a href="#contact">{t(uiText.getInTouch, lang)}</a></button>
-          </span>
+          <LangToggle lang={lang} setLang={setLang} />
+          <button className="button button-primary"><a href="#contact">{t(uiText.getInTouch, lang)}</a></button>
         </div>
+
+
       </header>
 
       <section>

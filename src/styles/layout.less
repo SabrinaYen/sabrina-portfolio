@@ -46,9 +46,9 @@ section {
 
 .header-container {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-areas: "left-content nav right-content";
+  grid-template-columns: repeat(3, 1fr);
   backdrop-filter: blur(8px);
   position: sticky;
   top: 0;
@@ -59,6 +59,7 @@ section {
 }
 
 .left-content {
+  grid-area: left-content;
   .flex-row();
 
   .nav-brand {
@@ -67,13 +68,32 @@ section {
   }
 }
 
-.right-content {
-  .nav {
-    .flex-row(24px);
-    white-space: nowrap;
-    .mono();
-    font-size: 13px;
+.nav,
+.nav-item {
+  .flex-row();
+  grid-area: nav;
+  justify-content: space-between;
+  width: 100%;
+  white-space: nowrap;
+  .mono();
+  font-size: 13px;
+
+  a {
+    transition: color 140ms linear, border-color 140ms linear;
+
+    &:hover,
+    &.active {
+      color: @color-accent;
+    }
   }
+}
+
+.right-content {
+  grid-area: right-content;
+  .flex-row();
+  gap: 20px;
+  justify-content: flex-end;
+
 }
 
 .tiny-box {
@@ -585,23 +605,49 @@ footer {
   }
 
   .header-container {
-    align-items: flex-start;
-    padding: 12px 16px;
+    padding: 0;
+    grid-template-areas:
+      "left-content right-content"
+      "nav nav";
+    grid-template-columns: 50% 50%;
+  }
+
+  .left-content,
+  .right-content {
+    padding: 16px;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: center;
+
+    .nav-item {
+      gap: 0;
+    }
+
+    a {
+      width: 100%;
+      padding: 15px;
+      border: 3px solid @color-surface;
+      text-align: center;
+      &:hover {
+        color: @color-accent;
+      }
+
+      &.active {
+        background: fade(@color-accent,7%);
+        border-top-color: @color-accent;
+        color: @color-accent;
+      }
+    }
   }
 
   .right-content {
     min-width: 0;
-
-    .nav {
-      justify-content: flex-end;
-      gap: 10px 14px;
-      white-space: normal;
-      flex-wrap: wrap;
-    }
   }
 
   .section-container .contact-content {
-    align-items: flex-start;
+    // align-items: flex-start;
     flex-wrap: wrap;
   }
 
