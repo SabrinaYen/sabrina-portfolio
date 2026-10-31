@@ -1,7 +1,3 @@
-// Every text field that's shown to the reader is bilingual: { en, zh }.
-// Fields that are proper nouns / URLs / tech names (company names, tags,
-// links, email, phone) are left as plain strings since they don't change
-// between languages.
 export const uiText = {
     navAbout: { en: 'about', zh: '关于' },
     navSkills: { en: 'skills', zh: '技能' },

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { personalData, stats, skills, experience, projects, uiText, terminalLines } from './assets/data/personal-data.js';
+import { useEffect, useState } from 'react';
+import { useSiteData } from './use-site-data.js';
 import {
   IconEmail,
   IconEmailAlt,
@@ -26,13 +26,19 @@ const iconMap = {
 };
 
 const App = () => {
+  const { personalData, skills, experience, projects, uiText, terminalLines } = useSiteData();
   const [lang, setLang] = useState('en');
   const [year] = useState(new Date());
-  const [showAll, setShowAll] = useState(false);
   const [activeExp, setActiveExp] = useState(0);
   const [activeNav, setActiveNav] = useState();
-  const [projectData, setProjectData] = useState(projects.filter((p) => p.isSensitive === false));
-  const selectedExp = experience[activeExp];
+
+  // sensitive projects stay hidden unless the page is opened with ?showAll=true
+  const showAll = new URLSearchParams(window.location.search).get('showAll') === 'true';
+  const projectData = showAll ? projects : projects.filter((p) => p.isSensitive === false);
+
+  // the list can get shorter when the API data arrives, so never point past its end
+  const currentExp = Math.min(activeExp, experience.length - 1);
+  const selectedExp = experience[currentExp];
 
   const goNext = (isNext) => {
     setActiveExp((i) =>
@@ -69,13 +75,6 @@ const App = () => {
 
     sections.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
-  useEffect(() => {
-    const queryParam = new URLSearchParams(window.location.search);
-    if (queryParam.get('showAll') === 'true') {
-      setShowAll(true);
-      setProjectData(projects);
-    }
   }, []);
 
   return (
@@ -250,7 +249,7 @@ const App = () => {
             <div className="milestone-container">
               <div className="label">
                 <span className="milestone-label">
-                  {t(uiText.milestone, lang)} {String(activeExp + 1).padStart(2, '0')} /{' '}
+                  {t(uiText.milestone, lang)} {String(currentExp + 1).padStart(2, '0')} /{' '}
                   {String(experience.length).padStart(2, '0')}
                 </span>
                 <span className="milestone-divider"></span>
@@ -265,9 +264,9 @@ const App = () => {
               {experience.map((exp, index) => (
                 <button
                   key={index}
-                  className={`experience-item ${index === activeExp ? ' active' : ''}`}
+                  className={`experience-item ${index === currentExp ? ' active' : ''}`}
                   onClick={() => setActiveExp(index)}
-                  aria-pressed={index === activeExp}
+                  aria-pressed={index === currentExp}
                 >
                   <span className="experience-period">
                     <span className="tiny-box" aria-hidden="true" />
@@ -309,11 +308,20 @@ const App = () => {
                 <IconEmail alt="email-icon" />
                 <a href={`mailto:${personalData.email}`}>{personalData.email}</a>
               </span>
-              <span className="tag tag-outline">
-                <a href={personalData.socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
-                  <IconLinkedin alt="linkedin-icon" />
-                </a>
-              </span>
+              {personalData.socialLinks.github && (
+                <span className="tag tag-outline">
+                  <a href={personalData.socialLinks.github} target="_blank" rel="noopener noreferrer">
+                    <IconGithub alt="github-icon" />
+                  </a>
+                </span>
+              )}
+              {personalData.socialLinks.linkedin && (
+                <span className="tag tag-outline">
+                  <a href={personalData.socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
+                    <IconLinkedin alt="linkedin-icon" />
+                  </a>
+                </span>
+              )}
             </div>
           </div>
         </div>
